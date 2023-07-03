@@ -9,25 +9,37 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   const [cards, setCards] = useState([]);
 
   React.useEffect(() => {
-    api.getUserInfo().then((data) => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    });
-  }, []);
+    api
+      .getUserInfo()
+      .then((data) => {
+        setUserName(data.name);
+        setUserDescription(data.about);
+        setUserAvatar(data.avatar);
+      })
+      .catch((error) => {
+        // Обработка ошибки здесь
+        console.error("Ошибка при получении информации о пользователе:", error);
+      });
+  });
 
   React.useEffect(() => {
-    api.getCards().then((res) => {
-      const cardsFromApi = res.map((card) => ({
-        id: card._id,
-        link: card.link,
-        name: card.name,
-        likes: card.likes.length,
-        onCardClick: onCardClick,
-      }));
+    api
+      .getCards()
+      .then((res) => {
+        const cardsFromApi = res.map((card) => ({
+          id: card._id,
+          link: card.link,
+          name: card.name,
+          likes: card.likes.length,
+          onCardClick: onCardClick,
+        }));
 
-      setCards(cardsFromApi);
-    });
+        setCards(cardsFromApi);
+      })
+      .catch((error) => {
+        // Обработка ошибки здесь
+        console.error("Ошибка при получении карточек:", error);
+      });
   }, []);
 
   return (
