@@ -8,7 +8,7 @@ function Card(props) {
     <div className="gallery__items">
       <img onClick={handleClick} alt={props.name} className="gallery__image" src={props.link} />
       <button className="gallery__delete-button" />
-      <div className="gallery__bottom"></div>
+      <div className="gallery__bottom">
         <h2 className="gallery__title">{props.name}</h2>
         <div className="gallery__like-container">
           <button type="button" className="gallery__like-button" />

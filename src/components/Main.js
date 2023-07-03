@@ -17,7 +17,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         setUserAvatar(data.avatar);
       })
       .catch((error) => {
-        // Обработка ошибки здесь
         console.error("Ошибка при получении информации о пользователе:", error);
       });
   });
@@ -37,7 +36,6 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         setCards(cardsFromApi);
       })
       .catch((error) => {
-        // Обработка ошибки здесь
         console.error("Ошибка при получении карточек:", error);
       });
   }, []);
