@@ -35,7 +35,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: InputValue.name,
-        about: InputValue.speciality,
+        about: InputValue.about,
       }),
     }).then(this._getResponseData);
   }
@@ -51,18 +51,9 @@ export default class Api {
     }).then(this._getResponseData);
   }
 
-  addLike(cardId) {
+  toggleLike(cardId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: {
-        authorization: this._token,
-      },
-    }).then(this._getResponseData);
-  }
-
-  removeLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-      method: "DELETE",
+      method: isLiked ? "DELETE" : "PUT",
       headers: {
         authorization: this._token,
       },
